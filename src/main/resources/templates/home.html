@@ -6,6 +6,42 @@
     </head>
 </head>
 <body>
-    Home vetrina negozio
+    <div class="container">
+        <form th:action="@{'prodotti/get}" th:object="${classeAParte}"></form>
+            <div class="cercaNome">
+                <!--GET ALL PRODOTTI CON NOME-->
+                <span><input type="text" th:field="*{nomeProdotto}" placeholder="Cerca prodotto"></span>
+            </div>
+            <div class="cercaCategoria">
+                <!--GET ALL PRODOTTI DI CATEGORIA-->
+                <select th:field="*{categoria}">
+                    <option value="" disabled selected>Seleziona la categoria</option>
+                    <option th:each="categoria : ${categorie}" th:value="${categoria.id}" th:text="${categoria.nome}"></option>
+                </select>
+            </div>
+            <div class="cercaProduttore">
+                <!--GET ALL PRODOTTI DI PRODUTTORE-->
+                <select th:field="*{produttore}">
+                    <option value="" disabled selected>Seleziona il produttore</option>
+                    <option th:each="produttore : ${produttori}" th:value="${produttore.id}" th:text="${produttore.nome}"></option>
+                </select>
+            </div>
+            <a class="button" href="home.html" th:href="@{'/prodotti/get/produttore=' + ${produttore.id}}"><img src="../static/images/search.png" th:src="@{images/search.png}"></a>
+            <!--<input type="submit" value="">-->
+        </form>
+        <div class="prodotti">
+            <!--MOSTRA I PRODOTTI-->
+            <div th:if="${prodotti.size()}">
+                <ul>
+                    <li th:each="prodotto : ${prodotti}">
+                        <a href="prodotto.html" th:href="@{'/prodotto/get/' + ${prodotto.id}}" th:text="${prodotto.nome} + ': ' + ${prodotto.prezzo}">Xiaomi Redmi Note 9 Pro: 250.00€</a>
+                    </li>
+                </ul>
+            </div>
+            <div th:if="!${prodotti.size()}">
+                Non sono presenti prodotti
+            </div>
+        </div>
+    </div>    
 </body>
 </html>

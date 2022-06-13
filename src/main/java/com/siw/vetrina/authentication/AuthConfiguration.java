@@ -22,7 +22,7 @@ import static com.siw.vetrina.model.Credentials.ADMIN_ROLE;
  */
 @Configuration
 @EnableWebSecurity
-public class AuthConfiguration extends WebSecurityConfigurerAdapter {
+public class AuthConfiguration extends WebSecurityConfigurerAdapter { 
 
     /**
      * The datasource is automatically injected into the AuthConfiguration (using its getters and setters)
