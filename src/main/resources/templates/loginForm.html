@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<header>
+		<head th:replace="fragments/base.html :: headerfiles(title='Vetrina')">
+			<link rel="stylesheet" href="../static/css/style.css">
+		</head>
+	</header>
+<body>
+	<div class="authenticationContainer">
+		<h3 th:if="${username}">Congratulazioni, ti sei registrato!</h3>
+		<form action="home.html" th:action="@{/login}" method="get" th:method="post">
+			<h2>LOGIN</h2>
+			<div class="formAuth">
+				<div>
+					<span><input name="username" type="text" required placeholder="Username"/></span>
+				</div>
+				<div>
+					<span><input name="password" type="password" required placeholder="Password"/></span>
+				</div>
+				<div>
+					<span><button type="submit">LOGIN</button></span>
+					<p>or</p>
+				</div>
+			</div>
+		</form>
+		<form action="registerForm.html" th:action="@{/register}" method="get">
+			<div class="formAuth">
+				<button id="register" type="submit">REGISTER</button>
+			</div>
+		</form>
+	</div>
+</body> 
+</html>

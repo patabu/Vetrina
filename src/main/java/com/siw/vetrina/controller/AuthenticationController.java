@@ -7,15 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.siw.vetrina.model.Credentials;
 import com.siw.vetrina.model.Utente;
 import com.siw.vetrina.service.CredentialsService;
 
 @Controller
-public class AuthenticationController {
+public class AuthenticationController { 
 	
 	@Autowired private CredentialsService credentialsService;
 	
@@ -28,12 +26,12 @@ public class AuthenticationController {
 	
 	@GetMapping(value = {"/login", "/", "/index", "/logout"})
 	public String showLoginForm (Model model) {
-		return "loginForm";
+		return "loginForm"; 
 	}
 	
 	@GetMapping("/home")
     public String home(Model model) {
-		//this.credentialsService.setRoleInModel(model);
+		this.credentialsService.setRoleInModel(model);
         return "home";
     }
 	
@@ -53,7 +51,7 @@ public class AuthenticationController {
             // set the user and store the credentials;
             // this also stores the User, thanks to Cascade.ALL policy
             credentials.setUtente(utente);
-            //credentialsService.saveCredentials(credentials);
+            credentialsService.saveCredentials(credentials);
             model.addAttribute("username", credentials.getUsername()); 
             return "loginForm";
         }
