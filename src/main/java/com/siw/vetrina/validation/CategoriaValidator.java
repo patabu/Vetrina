@@ -1,5 +1,26 @@
 package com.siw.vetrina.validation;
 
-public class CategoriaValidator {
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import com.siw.vetrina.model.Categoria;
+import com.siw.vetrina.service.CategoriaService;
+
+public class CategoriaValidator implements Validator {
+	@Autowired
+	private CategoriaService categoriaService;
+
+	@Override
+	public boolean supports(Class<?> clazz) {
+		return Categoria.class.equals(clazz);
+	}
+
+	@Override
+	public void validate(Object target, Errors errors) {
+		if (this.categoriaService.alreadyExist((Categoria) target))
+			errors.reject("catgoria.duplicato");
+	}
 
 }
