@@ -21,7 +21,7 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaValidator categoriaValidator;
 
-	@PostMapping("/saveCategoria")
+	@PostMapping("/admin/categoria/save")
 	public String saveCategoria(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult br, Model model) {
 		this.categoriaValidator.validate(categoria, br);
 		if (!br.hasErrors()) {
@@ -31,7 +31,7 @@ public class CategoriaController {
 		}
 		return "categoriaForm.html";
 	}
-	@GetMapping("/categoriaForm")
+	@GetMapping("/admin/categoria/form")
 	public String formCategoria(Model model) {
 		model.addAttribute("categoria", new Categoria());
 		return "categoriaForm.html";
