@@ -26,7 +26,7 @@ public class ProdottoService {
 		return prodottoRepository.findById(id).get();
 	}
 
-	public List<Prodotto> getAllCategorie() {
+	public List<Prodotto> getAllProdotti() {
 		List<Prodotto> prodotti = new ArrayList<Prodotto>();
 		for (Prodotto p : prodottoRepository.findAll())
 			prodotti.add(p);

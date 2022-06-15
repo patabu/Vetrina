@@ -1,14 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headerfiles(title)">
+<head th:fragment="head(title)">
 	<meta charset="UTF-8"/>
 	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<!--<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>-->
 	<title th:text="${title}"></title>
 </head>
 <body>
-	<header th:fragment="home">
+	<header th:fragment="header">
 		<a th:href="@{/home}" alt="Home"><img th:src="@{/images/home.png}"></a>
-	</header>
+        <!--<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>-->
+    </header>
 	<footer th:fragment="end">
 		Progetto personale siw (docente) 2022
 	</footer>	

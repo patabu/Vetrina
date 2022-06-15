@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.siw.vetrina.model.Prodotto;
 import com.siw.vetrina.model.Produttore;
 import com.siw.vetrina.service.ProduttoreService;
 import com.siw.vetrina.validation.ProduttoreValidator;
 
 @Controller
-public class ProduttoreController {
+public class ProduttoreController {  
 	@Autowired
 	private ProduttoreService produttoreService;
 	@Autowired
 	private ProduttoreValidator produttoreValidator;
 
-	@PostMapping("/saveProduttore")
+	@PostMapping("/admin/produttore/save") 
 	public String saveProduttore(@Valid @ModelAttribute("produttore") Produttore produttore, BindingResult br, Model model) {
 		this.produttoreValidator.validate(produttore, br);
 		if (!br.hasErrors()) {
@@ -32,9 +33,15 @@ public class ProduttoreController {
 		}
 		return "produttoreForm.html";
 	}
-	@GetMapping("/produttoreForm")
-	public String formProduttore(Model model) {
+	@GetMapping("/admin/produttore/formAdd")
+	public String formAddProduttore(Model model) {
 		model.addAttribute("produttore", new Produttore());
+		return "produttoreForm.html";
+	}
+	
+	@GetMapping("/admin/produttore/formModify/{id}")
+	public String formModifyProduttore(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("produttore", this.produttoreService.getProduttore(id));
 		return "produttoreForm.html";
 	}
 

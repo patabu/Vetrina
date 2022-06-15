@@ -26,7 +26,7 @@ public class ProduttoreService {
 		return produttoreRepository.findById(id).get();
 	}
 
-	public List<Produttore> getAllCategorie() {
+	public List<Produttore> getAllProduttori() {
 		List<Produttore> produttori = new ArrayList<Produttore>();
 		for (Produttore p : produttoreRepository.findAll())
 			produttori.add(p);

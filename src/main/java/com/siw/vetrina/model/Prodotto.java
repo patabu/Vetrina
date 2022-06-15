@@ -1,5 +1,7 @@
 package com.siw.vetrina.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -74,4 +76,9 @@ public class Prodotto {
 		this.produttore = produttore;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(categoria, id, nome, prezzo, produttore);
+	}
+	
 }

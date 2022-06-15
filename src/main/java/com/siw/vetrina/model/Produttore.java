@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Produttore {
+public class Produttore { 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

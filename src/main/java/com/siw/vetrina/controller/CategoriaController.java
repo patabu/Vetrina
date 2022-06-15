@@ -15,13 +15,13 @@ import com.siw.vetrina.model.Categoria;
 import com.siw.vetrina.service.CategoriaService;
 import com.siw.vetrina.validation.CategoriaValidator;
 @Controller
-public class CategoriaController {
+public class CategoriaController { 
 	@Autowired
 	private CategoriaService categoriaService;
 	@Autowired
 	private CategoriaValidator categoriaValidator;
 
-	@PostMapping("/admin/categoria/save")
+	@PostMapping("/admin/categoria/save")  
 	public String saveCategoria(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult br, Model model) {
 		this.categoriaValidator.validate(categoria, br);
 		if (!br.hasErrors()) {
@@ -31,8 +31,15 @@ public class CategoriaController {
 		}
 		return "categoriaForm.html";
 	}
-	@GetMapping("/admin/categoria/form")
-	public String formCategoria(Model model) {
+	
+	@GetMapping("/admin/categoria/formAdd")
+	public String formAddCategoria(Model model) {
+		model.addAttribute("categoria", new Categoria());
+		return "categoriaForm.html";
+	}
+	
+	@GetMapping("/admin/categoria/formModify")
+	public String formModifyCategoria(Model model) {
 		model.addAttribute("categoria", new Categoria());
 		return "categoriaForm.html";
 	}

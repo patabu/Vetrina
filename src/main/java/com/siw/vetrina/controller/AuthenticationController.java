@@ -29,12 +29,6 @@ public class AuthenticationController {
 		return "loginForm"; 
 	}
 	
-	@GetMapping("/home")
-    public String home(Model model) {
-		this.credentialsService.setRoleInModel(model);
-        return "home";
-    }
-	
     @PostMapping("/register") 
     public String registerUser(@ModelAttribute("utente") Utente utente,
                  BindingResult userBindingResult,

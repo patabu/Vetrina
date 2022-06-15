@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h2>PRODOTTO:</h2>
+    <div class="formcontainer">
+    <form th:action="@{/admin/prodotto/save}" method="post" th:object="${prodotto}">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <span><input type="text" th:field="*{nome}" placeholder="Nome"></span>
+        </div>
+        <div>
+            <span><input type="number" th:field="*{prezzo}" placeholder="Prezzo"></span>
+        </div>
+        <div>
+            <span>Categoria:</span>
+            <span>
+                <select th:field="*{categoria}">
+                    <option value="" disabled selected>Seleziona la categoria</option>
+                    <option th:each="categoria : ${categorie}" th:value="${categoria.id}" th:text="${categoria.nome}" th:if="${categoria.nome}"></option>
+                </select>
+            </span>
+        </div>
+        <div>
+            <span>Produttore:</span>
+            <span>
+                <select th:field="*{produttore}">
+                    <option value="" disabled selected>Seleziona il produttore</option>
+                    <option th:each="produttore : ${produttori}" th:value="${produttore.id}" th:text="${produttore.nome}" th:if="${produttore.nome}"></option>
+                </select>
+            </span>
+        </div>
+        <div>
+            <span><button type="submit" th:if="${modifyForm}">Modifica</button></span>
+            <span><button type="submit" th:if="!${modifyForm}">Aggiungi</button></span>
+        </div>
+    </form>
+    </div>
+</body>
+</html>

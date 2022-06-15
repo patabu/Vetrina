@@ -22,7 +22,7 @@ import static com.siw.vetrina.model.Credentials.ADMIN_ROLE;
  */
 @Configuration
 @EnableWebSecurity
-public class AuthConfiguration extends WebSecurityConfigurerAdapter { 
+public class AuthConfiguration extends WebSecurityConfigurerAdapter {   
 
     /**
      * The datasource is automatically injected into the AuthConfiguration (using its getters and setters)
@@ -56,7 +56,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
         // NOTA: Spring gestisce il post di login automaticamente
         .loginPage("/login")
         // se il login ha successo, si viene rediretti al path /default
-        .defaultSuccessUrl("/home")
+        .defaultSuccessUrl("/prodotti")
 
         // logout paragraph: qui definiamo il logout
         .and().logout()
