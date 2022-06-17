@@ -51,5 +51,9 @@ public class CredentialsService {
     	if (getRoleActualUser().equals(Credentials.ADMIN_ROLE))
     		model.addAttribute("admin", true);
     }
+
+	public boolean alreadyExist(Credentials target) {
+		return this.credentialsRepository.existsByUsername(target.getUsername());
+	}
     
 }
