@@ -14,7 +14,7 @@ public class SearchProdotti {
 		this.produttore = new Produttore();
 		this.categoria.setId(0);
 		this.produttore.setId(0);
-	}
+	} 
 	
 	public SearchProdotti(String nomeProdotto, Categoria categoria, Produttore produttore) {
 		this.nomeProdotto = nomeProdotto;
@@ -38,5 +38,5 @@ public class SearchProdotti {
 	}
 	public void setProduttore(Produttore produttore) {
 		this.produttore = produttore;
-	}
+	}	  
 }

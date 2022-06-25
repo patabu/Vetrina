@@ -1,5 +1,8 @@
 package com.siw.vetrina.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,19 +73,26 @@ public class ProdottoController {
 	}
 	
 	
-	@GetMapping("/prodotti")
+	@GetMapping("/prodotti") 
 	public String getProdotti(Model model) { 
-		this.credentialsService.setRoleInModel(model);
-		/*if (searchProdotti != null) {
-			System.out.println("Not Empty");
-		} else {
-			System.out.println("Empty");
-		}*/
 		model.addAttribute("categorie", this.categoriaService.getAllCategorie());
 		model.addAttribute("produttori", this.produttoreService.getAllProduttori());
 		model.addAttribute("prodotti", this.prodottoService.getAllProdotti());
-		model.addAttribute("SearchProdotti", new SearchProdotti());
-		return "prodotti.html";
-	}
+		model.addAttribute("SearchProdotti", new SearchProdotti()); 
+		return "prodotti.html";  
+	} 
+
+	
+	@GetMapping("/prodotto/get/filtered") 
+	public String getProdottiFiltered(@ModelAttribute("SearchProdotti") SearchProdotti searchProdotti, Model model) {
+		List<Prodotto> prodotti = this.prodottoService.searchProdotti(searchProdotti);		
+		this.credentialsService.setRoleInModel(model);
+		model.addAttribute("categorie", this.categoriaService.getAllCategorie());
+		model.addAttribute("produttori", this.produttoreService.getAllProduttori());
+		model.addAttribute("prodotti", prodotti);
+		model.addAttribute("SearchProdotti", new SearchProdotti()); 
+		return "prodotti.html";     
+	}  
+	
 
 }

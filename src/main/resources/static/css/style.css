@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    #background: linear-gradient(180deg, #E9DAC1 10%, #18978F 95%, #54BAB9 100%);
+    background-color: #54BAB9;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-size: 25px;
+    height: 100%;
+}
+
+header {
+    background-color: #F7ECDE;
+    position: absolute;
+}
+
+header a {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    height: 40%;
+    padding: 5px 0px 5px 0px;
+    cursor: pointer;
+}
+
+header img {
+    width: auto;
+    height: 2em;
+    padding-left: .2em;
+}
+
+.submitButton {
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+
+.form {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+    background-color:#F7ECDE;
+}
+
+.form select {
+    margin: 0;
+}
+
+.form  input {
+    width: 100%;
+}
+
+.form a > img {
+    height: 24px;
+    width: 24px;
+}
+
+input[type="text"], input[type="password"] {
+    height: 40px;
+    width: 200px;
+    font-size: 18px;
+    border-width: 0px;
+    border-color: none;
+    background: transparent;
+    color: #262E74;
+    box-shadow: 0px 1px 0px rgb(212, 205, 205);
+}
+
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline:none;
+}
+
+#descrizione {
+    width: 300px;
+}
+
+select {
+    height: 40px;
+    width: 200px;
+    font-size: 18px;
+    margin-top: 10px;
+    background-color: transparent;
+    color: #262E74;
+    border-width: 0px;
+    box-shadow: 0px 1px 0px rgb(212, 205, 205);
+    cursor: pointer;
+}
+
+button {
+	background: #5465FF;
+	border-radius:30px;
+    height: auto;
+	border:1px solid #788BFF;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:15px;
+    font-weight: bold;
+    color:rgb(212, 212, 212);
+	padding:5px 60px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+
+button:hover {
+	background: #616ee3;
+}
+
+button:active {
+	position:relative;
+	top:1px;
+}
+
+.prodotti {
+    display: flex;
+    flex-direction: column;
+}
+
+.prodotti ul {
+    padding-left: 0;
+    padding: 0 100px;
+}
+
+.prodotti ul li {
+    list-style-type:none;
+    border: 0px solid;
+    border-radius: 20px;
+    background-color: #18978F;
+    height: 100px;
+    display: flex;
+}
+
+.prodotti li 

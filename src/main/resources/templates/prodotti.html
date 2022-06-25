@@ -6,38 +6,40 @@
     </head>
 </head>
 <body>
-    <header th:replace="fragments/base.html :: header"></header>
+    <header>
+        <a th:href="@{/home}" alt="Home"><img src="/static/images/logout.png" th:src="@{/images/logout.png}"></a>
+    </header>
     <div class="container">
-        <form th:action="@{prodotti/get}" th:object="${SearchProdotti}">
+        <form class="form" th:action="@{/prodotto/get/filtered}" method="get" th:object="${SearchProdotti}">
             <div class="cercaNome">
-                <span><input type="text" th:field="*{nomeProdotto}" placeholder="Cerca prodotto"></span>
+                <span><input type="text" th:field="*{nomeProdotto}" placeholder="Cerca per nome prodotto"></span>
             </div>
             <div class="cercaCategoria">
                 <select th:field="*{categoria}">
-                    <option value="" disabled selected>Seleziona la categoria</option>
-                    <option th:each="categoria : ${categorie}" th:value="${categoria.id}" th:text="${categoria.nome}"></option>ù
-                    <a th:href="@{'/admin/categoria/modifyForm/' + *{categoria}}"><img th:src="@{/images/settings.png}"></a>
-                <a th:href="@{'/admin/categoria/delete/' + *{categoria}}"><img th:src="@{/images/delete.png}"></a>
+                    <option value="" selected>Filtra per categoria</option>
+                    <option th:each="c : ${categorie}" th:value="${c.id}" th:text="${c.nome}"></option>ù
                 </select>
-                
+                <a th:href="@{/admin/categoria/get/all}"><img src="/static/images/settings.png" th:src="@{/images/settings.png}"></a>
             </div>
             <div class="cercaProduttore">
                 <select th:field="*{produttore}">
-                    <option value="" disabled selected>Seleziona il produttore</option>
-                    <option th:each="produttore : ${produttori}" th:value="${produttore.id}" th:text="${produttore.nome}"></option>
+                    <option value="" selected>Filtra per produttore</option>
+                    <option th:each="p : ${produttori}" th:value="${p.id}" th:text="${p.nome}"></option>
                 </select>
-                <a th:href="@{'/admin/produttore/modifyForm/' + *{produttore}}"><img th:src="@{/images/settings.png}"></a>
-                <a th:href="@{'/admin/produttore/delete/' + *{produttore}}"><img th:src="@{/images/delete.png}"></a>
+                <a th:href="@{/admin/produttore/get/all}"><img src="/static/images/settings.png" th:src="@{/images/settings.png}"></a>
             </div>
-            <button type="submit">Cerca</button>
+            <button class="submitButton" type="submit"><img src="/static/images/search.png" th:src="@{/images/search.png}"></button> 
         </form>
         <div class="prodotti">
             <div th:if="${prodotti.size()}">
                 <ul>
                     <li th:each="prodotto : ${prodotti}">
-                        <a href="prodotto.html" th:href="@{'/prodotto/get/' + ${prodotto.id}}" th:text="${prodotto.nome} + ': ' + ${prodotto.prezzo}">Xiaomi Redmi Note 9 Pro: 250.00€</a>
-                        <a th:href="@{'/admin/prodotto/formModify/' + ${prodotto.id}}">Modifica</a>
-                        <a th:href="@{'/admin/prodotto/delete/' + ${prodotto.id}}">Elimina</a>
+                        <p>Categoria: Elettronica - Produttore: Nokia</p>
+                        <a>Xiaomi Redmi Note 9 Pro</a>
+                        <div class="editProduct">
+                            <a th:href="@{'/admin/prodotto/formModify/' + ${prodotto.id}}"><img src="/static/images/pencil.png" th:src="@{/images/pencil.png}"></a>
+                            <a th:href="@{'/admin/prodotto/delete/' + ${prodotto.id}}"><img src="/static/images/delete.png" th:src="@{/images/delete.png}"></a>
+                        </div>
                     </li>
                 </ul>
             </div>
