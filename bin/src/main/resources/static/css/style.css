@@ -1,16 +1,11 @@
 body {
     margin: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    #background: linear-gradient(180deg, #E9DAC1 10%, #18978F 95%, #54BAB9 100%);
     background-color: #54BAB9;
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-size: 25px;
     height: 100%;
-    
-}
-
-h2 {
-    text-align: center;
 }
 
 header {
@@ -31,43 +26,6 @@ header img {
     width: auto;
     height: 2em;
     padding-left: .2em;
-}
-
-.cards {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 20px;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid;
-    border-radius: 10px;
-    border-color: aliceblue;
-    background-color: white;
-    color: black;
-}
-
-.card > .content {
-    padding: 10px;
-}
-
-.registerButton{
-    margin-top: -100px;
-}
-
-.card > .content > h2 {
-    text-align: center;
-}
-
-.card > .content > h3 {
-    text-align: center;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-around;
 }
 
 .submitButton {
@@ -97,7 +55,7 @@ header img {
     width: 24px;
 }
 
-input[type="text"], input[type="password"], input[type="number"] {
+input[type="text"], input[type="password"] {
     height: 40px;
     width: 200px;
     font-size: 18px;
@@ -108,13 +66,8 @@ input[type="text"], input[type="password"], input[type="number"] {
     box-shadow: 0px 1px 0px rgb(212, 205, 205);
 }
 
-.formAuth > form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-input[type="text"]:focus, input[type="password"]:focus,  input[type="number"]:focus{
+input[type="text"]:focus, input[type="password"]:focus {
     outline:none;
 }
 
@@ -148,10 +101,6 @@ button {
 	padding:5px 60px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #2f6627;
-}
-
-.formAuth button {
-    margin-top: 15px;
 }
 
 button:hover {

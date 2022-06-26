@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head th:replace="fragments/base.html :: head(title='Vetrina')">
+        <link rel="stylesheet" href="../static/css/style.css">
+    </head>
+</head>
+<body>
+    <header>
+        <a th:href="@{/home}" alt="Home"><img src="/static/images/logout.png" th:src="@{/images/logout.png}"></a>
+    </header>
+    <div class="container">
+        <form class="form" th:action="@{/prodotto/get/filtered}" method="get" th:object="${SearchProdotti}">
+            <div class="cercaNome">
+                <span><input type="text" th:field="*{nomeProdotto}" placeholder="Cerca per nome prodotto"></span>
+                <a th:href="@{/admin/prodotto/formAdd}"><img src="/static/images/plus.png" th:src="@{/images/plus.png}"></a>
+            </div>
+            <div class="cercaCategoria">
+                <select th:field="*{categoria}">
+                    <option value="" selected>Filtra per categoria</option>
+                    <option th:each="c : ${categorie}" th:value="${c.id}" th:text="${c.nome}"></option>ù
+                </select>
+                <a th:href="@{/admin/categoria/formAdd}"><img src="/static/images/plus.png" th:src="@{/images/plus.png}"></a>
+                <a th:href="@{/admin/categoria/get/all}"><img src="/static/images/settings.png" th:src="@{/images/settings.png}"></a>
+            </div>
+            <div class="cercaProduttore">
+                <select th:field="*{produttore}">
+                    <option value="" selected>Filtra per produttore</option>
+                    <option th:each="p : ${produttori}" th:value="${p.id}" th:text="${p.nome}"></option>
+                </select>
+                <a th:href="@{/admin/produttore/formAdd}"><img src="/static/images/plus.png" th:src="@{/images/plus.png}"></a>
+                <a th:href="@{/admin/produttore/get/all}"><img src="/static/images/settings.png" th:src="@{/images/settings.png}"></a>
+            </div>
+            <button class="submitButton" type="submit"><img src="/static/images/search.png" th:src="@{/images/search.png}"></button> 
+        </form>
+        <div class="prodotti">
+            <div th:if="${prodotti.size()}">
+                <ul>
+                    <li th:each="prodotto : ${prodotti}">
+                        <p th:text="'Categoria: ' + ${prodotto.categoria.nome} + ' - Produttore: ' + ${prodotto.produttore.nome}">Categoria: Elettronica - Produttore: Nokia</p>
+                        <a th:text="${prodotto.nome}">Xiaomi Redmi Note 9 Pro</a>
+                        <div class="editProduct">
+                            <a th:href="@{'/admin/prodotto/formModify/' + ${prodotto.id}}"><img src="/static/images/pencil.png" th:src="@{/images/pencil.png}"></a>
+                            <a th:href="@{'/admin/prodotto/delete/' + ${prodotto.id}}"><img src="/static/images/delete.png" th:src="@{/images/delete.png}"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div th:if="!${prodotti.size()}">
+                Non sono presenti prodotti
+            </div>
+        </div>
+    </div>
+</body>
+</html>
