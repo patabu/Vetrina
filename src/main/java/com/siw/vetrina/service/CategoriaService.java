@@ -31,7 +31,7 @@ public class CategoriaService {
 		for (Categoria c : categoriaRepository.findAll())
 			categorie.add(c);
 		return categorie; 
-	} 
+	}  
 
 	public void removeCategoria(Long id) {
 		categoriaRepository.deleteById(id);

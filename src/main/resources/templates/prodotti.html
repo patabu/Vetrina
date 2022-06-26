@@ -38,9 +38,10 @@
                 <div class="cards">
                     <div class="card" th:each="prodotto : ${prodotti}">
                         <div class="content">
-                            <h2 th:text="${prodotto.nome}">iPhone 13 Pro Max (Apple)</h2>
-                            <h3 th:text="${prodotto.prezzo}">250.00€</h3>
-                            <p th:text="'Categoria: ' + ${prodotto.categoria.nome} + ' - Produttore: ' + ${prodotto.produttore.nome}">Categoria: Elettronica</p>
+                            <h2 th:text="${prodotto.nome}">iPhone 13 Pro Max</h2>
+                            <h3 th:text="'(' + ${prodotto.produttore.nome} + ')' ">(Nokia)</h3>
+                            <h4 th:text="${prodotto.prezzo} + '€'">250.00€</h4>
+                            <p th:text="${prodotto.categoria.nome}">Elettronica</p>
                             <div class="actions">
                                 <a th:href="@{'/admin/prodotto/formModify/' + ${prodotto.id}}"><img src="/static/images/pencil.png" th:src="@{/images/pencil.png}"></a>
                                 <a th:href="@{'/admin/prodotto/delete/' + ${prodotto.id}}"><img src="/static/images/delete.png" th:src="@{/images/delete.png}"></a>
