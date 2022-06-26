@@ -31,18 +31,21 @@ header img {
 
 .cards {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    padding-top: 20px;
 }
 
 .card {
     display: flex;
+    width: 350px;
+    height: 320px;
     flex-direction: column;
     border: 1px solid;
     border-radius: 10px;
     border-color: aliceblue;
     background-color: white;
     color: black;
+    margin: 20px 0px;
 }
 
 .card > .content {
@@ -51,9 +54,20 @@ header img {
 
 .card > .content > h2 {
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .card > .content > h3 {
+    text-align: center;
+    margin: 0;
+}
+
+.card > .content > h4 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card > .content > p {
     text-align: center;
 }
 
