@@ -35,7 +35,6 @@ public class ProdottoController {
 
 	@PostMapping("/admin/prodotto/save") 
 	public String saveProdotto(@Valid @ModelAttribute("prodotto") Prodotto prodotto, BindingResult br, Model model) {
-		this.prodottoValidator.validate(prodotto, br);
 		if (!br.hasErrors()) {
 			prodottoService.saveProdotto(prodotto);
 			return this.getProdotti(model);

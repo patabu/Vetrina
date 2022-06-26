@@ -26,7 +26,6 @@ public class ProdottoService {
 	@Transactional
 	public void saveProdotto(Prodotto prodotto) {
 		this.prodottoRepository.save(prodotto);
-
 	}
 
 	public Prodotto getProdotto(Long id) {
@@ -53,7 +52,7 @@ public class ProdottoService {
 		for (Prodotto p : prodotti)
 			System.out.println("C: " + p.getCategoria() + " N: " + p.getNome());
 		return prodotti; 
-	}
+	} 
 
 	public List<Prodotto> searchProdotti(SearchProdotti search) {
 		

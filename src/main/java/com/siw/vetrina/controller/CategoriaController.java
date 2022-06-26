@@ -31,7 +31,7 @@ public class CategoriaController {
 			return this.prodottoController.getProdotti(model);  
 		}
 		return "categoriaForm.html";
-	} 
+	}  
 	  
 	@GetMapping("/admin/categoria/formAdd")
 	public String formAddCategoria(Model model) {

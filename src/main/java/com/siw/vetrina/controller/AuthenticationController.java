@@ -27,7 +27,7 @@ public class AuthenticationController {
 	@GetMapping(value = {"/login", "/", "/index", "/logout"})
 	public String showLoginForm (Model model) {
 		return "loginForm"; 
-	}
+	} 
 	
     @PostMapping("/register") 
     public String registerUser(@ModelAttribute("utente") Utente utente,
