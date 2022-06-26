@@ -28,7 +28,7 @@ public class CategoriaController {
 		this.categoriaValidator.validate(categoria, br);
 		if (!br.hasErrors()) {
 			categoriaService.saveCategoria(categoria);
-			this.prodottoController.getProdotti(model); 
+			return this.prodottoController.getProdotti(model);  
 		}
 		return "categoriaForm.html";
 	}
@@ -39,9 +39,10 @@ public class CategoriaController {
 		return "categoriaForm.html";
 	}
 	
-	@GetMapping("/admin/categoria/formModify")
-	public String formModifyCategoria(Model model) {
-		model.addAttribute("categoria", new Categoria());
+	@GetMapping("/admin/categoria/formModify/{id}")
+	public String formModifyCategoria(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("categoria", this.categoriaService.getCategoria(id));
+		model.addAttribute("modifyForm", true); 
 		return "categoriaForm.html";
 	}
 
@@ -51,4 +52,17 @@ public class CategoriaController {
 		model.addAttribute("categoria", c);
 		return "categoria.html";
 	}
+	
+	@GetMapping("/admin/categoria/get/all")
+	public String getCategorie(Model model) {
+		model.addAttribute("categorie", this.categoriaService.getAllCategorie());
+		return "categorie.html";
+	}
+	
+	@GetMapping("/admin/categoria/delete/{id}")
+	public String deleteCategoria(@PathVariable("id") Long id, Model model) {
+		this.categoriaService.removeCategoria(id);
+		return this.getCategorie(model);
+	}
+	
 }

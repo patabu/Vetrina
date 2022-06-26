@@ -56,6 +56,7 @@ public class ProdottoController {
 		model.addAttribute("prodotto", this.prodottoService.getProdotto(id));
 		model.addAttribute("categorie", this.categoriaService.getAllCategorie());
 		model.addAttribute("produttori", this.produttoreService.getAllProduttori());
+		model.addAttribute("modifyForm", true);
 		return "prodottoForm.html"; 
 	}
 	

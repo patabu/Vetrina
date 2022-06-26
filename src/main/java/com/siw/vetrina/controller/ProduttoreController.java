@@ -2,6 +2,7 @@ package com.siw.vetrina.controller;
 
 import javax.validation.Valid;
 
+import org.aspectj.weaver.patterns.HasMemberTypePatternForPerThisMatching;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,10 +31,10 @@ public class ProduttoreController {
 
 	@PostMapping("/admin/produttore/save") 
 	public String saveProduttore(@Valid @ModelAttribute("produttore") Produttore produttore, BindingResult br, Model model) {
-		this.produttoreValidator.validate(produttore, br);
+		this.produttoreValidator.validate(produttore, br); 
 		if (!br.hasErrors()) {
 			produttoreService.saveProduttore(produttore);
-			this.prodottoController.getProdotti(model);
+			return this.prodottoController.getProdotti(model);
 		}
 		return "produttoreForm.html";
 	}
@@ -46,6 +47,7 @@ public class ProduttoreController {
 	@GetMapping("/admin/produttore/formModify/{id}")
 	public String formModifyProduttore(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("produttore", this.produttoreService.getProduttore(id));
+		model.addAttribute("modifyForm", true);
 		return "produttoreForm.html";
 	}
 
@@ -55,4 +57,17 @@ public class ProduttoreController {
 		model.addAttribute("produttore", c);
 		return "produttore.html";
 	}
+	
+	@GetMapping("/admin/produttore/get/all")
+	public String getProduttori(Model model) {
+		model.addAttribute("produttori", this.produttoreService.getAllProduttori());
+		return "produttori.html";
+	}
+	
+	@GetMapping("/admin/produttore/delete/{id}")
+	public String deleteProduttore(@PathVariable("id") Long id, Model model) {
+		this.produttoreService.removeProduttore(id);
+		return this.getProduttori(model);
+	}
+	
 }

@@ -18,7 +18,7 @@
             <div class="cercaCategoria">
                 <select th:field="*{categoria}">
                     <option value="" selected>Filtra per categoria</option>
-                    <option th:each="c : ${categorie}" th:value="${c.id}" th:text="${c.nome}"></option>ù
+                    <option th:each="c : ${categorie}" th:value="${c.id}" th:text="${c.nome}"></option>
                 </select>
                 <a th:href="@{/admin/categoria/formAdd}"><img src="/static/images/plus.png" th:src="@{/images/plus.png}"></a>
                 <a th:href="@{/admin/categoria/get/all}"><img src="/static/images/settings.png" th:src="@{/images/settings.png}"></a>
@@ -35,16 +35,19 @@
         </form>
         <div class="prodotti">
             <div th:if="${prodotti.size()}">
-                <ul>
-                    <li th:each="prodotto : ${prodotti}">
-                        <p th:text="'Categoria: ' + ${prodotto.categoria.nome} + ' - Produttore: ' + ${prodotto.produttore.nome}">Categoria: Elettronica - Produttore: Nokia</p>
-                        <a th:text="${prodotto.nome}">Xiaomi Redmi Note 9 Pro</a>
-                        <div class="editProduct">
-                            <a th:href="@{'/admin/prodotto/formModify/' + ${prodotto.id}}"><img src="/static/images/pencil.png" th:src="@{/images/pencil.png}"></a>
-                            <a th:href="@{'/admin/prodotto/delete/' + ${prodotto.id}}"><img src="/static/images/delete.png" th:src="@{/images/delete.png}"></a>
+                <div class="cards">
+                    <div class="card" th:each="prodotto : ${prodotti}">
+                        <div class="content">
+                            <h2 th:text="${prodotto.nome}">iPhone 13 Pro Max (Apple)</h2>
+                            <h3 th:text="${prodotto.prezzo}">250.00€</h3>
+                            <p th:text="'Categoria: ' + ${prodotto.categoria.nome} + ' - Produttore: ' + ${prodotto.produttore.nome}">Categoria: Elettronica</p>
+                            <div class="actions">
+                                <a th:href="@{'/admin/prodotto/formModify/' + ${prodotto.id}}"><img src="/static/images/pencil.png" th:src="@{/images/pencil.png}"></a>
+                                <a th:href="@{'/admin/prodotto/delete/' + ${prodotto.id}}"><img src="/static/images/delete.png" th:src="@{/images/delete.png}"></a>
+                            </div>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
             <div th:if="!${prodotti.size()}">
                 Non sono presenti prodotti

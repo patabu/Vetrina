@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head th:replace="fragments/base.html :: head(title='Vetrina')">
+        <link rel="stylesheet" href="../static/css/style.css">
+    </head>
+</head>
+<body>
+    <div class="container">
+        <div th:if="!${categorie.isEmpty}">
+            <ul>
+                <li th:each="categoria : ${categorie}">
+                    <a th:text="${categoria.nome}">Elettronica</a>
+                    <a th:href="@{'/admin/categoria/formModify/' + ${categoria.id}}"><img src="/static/images/pencil.png" th:src="@{/images/pencil.png}"></a>
+                    <a th:href="@{'/admin/categoria/delete/' + ${categoria.id}}"><img src="/static/images/delete.png" th:src="@{/images/delete.png}"></a>
+                </li>
+            </ul>
+        </div>
+        <div th:if="${categorie.isEmpty}">
+            Non ci sono categorie
+        </div>
+    </div>
+</body>
+</html>

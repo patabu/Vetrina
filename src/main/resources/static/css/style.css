@@ -1,11 +1,12 @@
 body {
     margin: 0;
-    #background: linear-gradient(180deg, #E9DAC1 10%, #18978F 95%, #54BAB9 100%);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #54BAB9;
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-size: 25px;
     height: 100%;
+    
 }
 
 header {
@@ -26,6 +27,39 @@ header img {
     width: auto;
     height: 2em;
     padding-left: .2em;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: aliceblue;
+    background-color: white;
+    color: black;
+}
+
+.card > .content {
+    padding: 10px;
+}
+
+.card > .content > h2 {
+    text-align: center;
+}
+
+.card > .content > h3 {
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
 }
 
 .submitButton {

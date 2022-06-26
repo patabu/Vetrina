@@ -9,7 +9,7 @@
 <body>
     <a href="home.html" th:href="@{/home}"><img src="/static/images/home.png"></a>
 </header>
-<h2>Nuovo/modifica produttore:</h2>
+<h2>PRODUTTORE</h2>
 <div class="formcontainer">
 <form th:action="@{/admin/produttore/save}" method="post" th:object="${produttore}">
     <input type="hidden" th:field="*{id}">

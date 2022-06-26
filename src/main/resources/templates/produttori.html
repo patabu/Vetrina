@@ -10,12 +10,14 @@
         <div th:if="!${produttori.isEmpty}">
             <ul>
                 <li th:each="produttore : ${produttori}">
-                    <a th:text="${produttore.nome}" th:href="${produttore.id}"></p>
+                    <a th:text="${produttore.nome}">Nokia</a>
+                    <a th:href="@{'/admin/produttore/formModify/' + ${produttore.id}}"><img src="/static/images/pencil.png" th:src="@{/images/pencil.png}"></a>
+                    <a th:href="@{'/admin/produttore/delete/' + ${produttore.id}}"><img src="/static/images/delete.png" th:src="@{/images/delete.png}"></a>
                 </li>
             </ul>
         </div>
         <div th:if="${produttori.isEmpty}">
-            
+            Non ci sono produttori
         </div>
     </div>
 </body>

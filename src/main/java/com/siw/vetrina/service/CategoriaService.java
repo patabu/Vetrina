@@ -30,8 +30,8 @@ public class CategoriaService {
 		List<Categoria> categorie = new ArrayList<Categoria>();
 		for (Categoria c : categoriaRepository.findAll())
 			categorie.add(c);
-		return categorie;
-	}
+		return categorie; 
+	} 
 
 	public void removeCategoria(Long id) {
 		categoriaRepository.deleteById(id);
