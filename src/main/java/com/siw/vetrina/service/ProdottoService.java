@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.siw.vetrina.dto.SearchProdotti;
 import com.siw.vetrina.model.Categoria;
@@ -17,6 +18,10 @@ import com.siw.vetrina.repository.ProdottoRepository;
 public class ProdottoService {
 	@Autowired
 	private ProdottoRepository prodottoRepository;
+	@Autowired
+	private ProduttoreService produttoreService;
+	@Autowired
+	private CategoriaService categoriaService;
 
 	@Transactional
 	public void saveProdotto(Prodotto prodotto) {
@@ -78,4 +83,12 @@ public class ProdottoService {
 		}
 		return this.getAllProdotti(); 
 	}
+	
+	public void getHomeData(Model model, List<Prodotto> prodotti) {
+		model.addAttribute("categorie", this.categoriaService.getAllCategorie());
+		model.addAttribute("produttori", this.produttoreService.getAllProduttori());
+		model.addAttribute("prodotti", prodotti);
+		model.addAttribute("SearchProdotti", new SearchProdotti()); 
+	}
+	
 }

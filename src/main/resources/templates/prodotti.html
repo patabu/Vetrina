@@ -13,12 +13,14 @@
         <form class="form" th:action="@{/prodotto/get/filtered}" method="get" th:object="${SearchProdotti}">
             <div class="cercaNome">
                 <span><input type="text" th:field="*{nomeProdotto}" placeholder="Cerca per nome prodotto"></span>
+                <a th:href="@{/admin/prodotto/formAdd}"><img src="/static/images/plus.png" th:src="@{/images/plus.png}"></a>
             </div>
             <div class="cercaCategoria">
                 <select th:field="*{categoria}">
                     <option value="" selected>Filtra per categoria</option>
                     <option th:each="c : ${categorie}" th:value="${c.id}" th:text="${c.nome}"></option>ù
                 </select>
+                <a th:href="@{/admin/categoria/formAdd}"><img src="/static/images/plus.png" th:src="@{/images/plus.png}"></a>
                 <a th:href="@{/admin/categoria/get/all}"><img src="/static/images/settings.png" th:src="@{/images/settings.png}"></a>
             </div>
             <div class="cercaProduttore">
@@ -26,6 +28,7 @@
                     <option value="" selected>Filtra per produttore</option>
                     <option th:each="p : ${produttori}" th:value="${p.id}" th:text="${p.nome}"></option>
                 </select>
+                <a th:href="@{/admin/produttore/formAdd}"><img src="/static/images/plus.png" th:src="@{/images/plus.png}"></a>
                 <a th:href="@{/admin/produttore/get/all}"><img src="/static/images/settings.png" th:src="@{/images/settings.png}"></a>
             </div>
             <button class="submitButton" type="submit"><img src="/static/images/search.png" th:src="@{/images/search.png}"></button> 
@@ -34,8 +37,8 @@
             <div th:if="${prodotti.size()}">
                 <ul>
                     <li th:each="prodotto : ${prodotti}">
-                        <p>Categoria: Elettronica - Produttore: Nokia</p>
-                        <a>Xiaomi Redmi Note 9 Pro</a>
+                        <p th:text="'Categoria: ' + ${prodotto.categoria.nome} + ' - Produttore: ' + ${prodotto.produttore.nome}">Categoria: Elettronica - Produttore: Nokia</p>
+                        <a th:text="${prodotto.nome}">Xiaomi Redmi Note 9 Pro</a>
                         <div class="editProduct">
                             <a th:href="@{'/admin/prodotto/formModify/' + ${prodotto.id}}"><img src="/static/images/pencil.png" th:src="@{/images/pencil.png}"></a>
                             <a th:href="@{'/admin/prodotto/delete/' + ${prodotto.id}}"><img src="/static/images/delete.png" th:src="@{/images/delete.png}"></a>
@@ -48,8 +51,5 @@
             </div>
         </div>
     </div>
-    <a th:href="@{/admin/categoria/formAdd}">Aggiungi categoria</a>
-    <a th:href="@{/admin/prodotto/formAdd}">Aggiungi prodotto</a>
-    <a th:href="@{/admin/produttore/formAdd}">Aggiungi produttore</a>
 </body>
 </html>

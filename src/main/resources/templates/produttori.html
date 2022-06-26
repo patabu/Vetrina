@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head th:replace="fragments/base.html :: head(title='Vetrina')">
+        <link rel="stylesheet" href="../static/css/style.css">
+    </head>
+</head>
+<body>
+    <div class="container">
+        <div th:if="!${produttori.isEmpty}">
+            <ul>
+                <li th:each="produttore : ${produttori}">
+                    <a th:text="${produttore.nome}" th:href="${produttore.id}"></p>
+                </li>
+            </ul>
+        </div>
+        <div th:if="${produttori.isEmpty}">
+            
+        </div>
+    </div>
+</body>
+</html>

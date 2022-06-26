@@ -13,23 +13,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.siw.vetrina.model.Prodotto;
 import com.siw.vetrina.model.Produttore;
+import com.siw.vetrina.service.ProdottoService;
 import com.siw.vetrina.service.ProduttoreService;
 import com.siw.vetrina.validation.ProduttoreValidator;
 
 @Controller
 public class ProduttoreController {  
 	@Autowired
+	private ProdottoService prodottoService;
+	@Autowired
 	private ProduttoreService produttoreService;
 	@Autowired
 	private ProduttoreValidator produttoreValidator;
+	@Autowired
+	private ProdottoController prodottoController;
 
 	@PostMapping("/admin/produttore/save") 
 	public String saveProduttore(@Valid @ModelAttribute("produttore") Produttore produttore, BindingResult br, Model model) {
 		this.produttoreValidator.validate(produttore, br);
 		if (!br.hasErrors()) {
 			produttoreService.saveProduttore(produttore);
-			model.addAttribute("produttore", produttore);
-			return "produttore.html";
+			this.prodottoController.getProdotti(model);
 		}
 		return "produttoreForm.html";
 	}

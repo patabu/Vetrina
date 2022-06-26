@@ -20,14 +20,15 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 	@Autowired
 	private CategoriaValidator categoriaValidator;
+	@Autowired
+	private ProdottoController prodottoController;
 
 	@PostMapping("/admin/categoria/save")  
 	public String saveCategoria(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult br, Model model) {
 		this.categoriaValidator.validate(categoria, br);
 		if (!br.hasErrors()) {
 			categoriaService.saveCategoria(categoria);
-			model.addAttribute("categoria", categoria);
-			return "categoria.html";
+			this.prodottoController.getProdotti(model); 
 		}
 		return "categoriaForm.html";
 	}

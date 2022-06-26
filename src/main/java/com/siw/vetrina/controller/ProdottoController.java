@@ -34,13 +34,13 @@ public class ProdottoController {
 	@Autowired private CategoriaService categoriaService;
 
 	@PostMapping("/admin/prodotto/save") 
-	public String saveProdotto(@Valid @ModelAttribute("prodotto") Prodotto prodotto, Model model) {
-		//this.prodottoValidator.validate(prodotto, br);
-		//if (!br.hasErrors()) {
+	public String saveProdotto(@Valid @ModelAttribute("prodotto") Prodotto prodotto, BindingResult br, Model model) {
+		this.prodottoValidator.validate(prodotto, br);
+		if (!br.hasErrors()) {
 			prodottoService.saveProdotto(prodotto);
 			return this.getProdotti(model);
-		//}
-		//return "prodottoForm.html";
+		}
+		return "prodottoForm.html"; 
 	}
 
 	@GetMapping("/admin/prodotto/formAdd")  
@@ -61,8 +61,8 @@ public class ProdottoController {
 	
 	@GetMapping("/prodotto/get/{id}")
 	public String getProdotto(@PathVariable("id") Long id, Model model) {
-		Prodotto c = prodottoService.getProdotto(id);
-		model.addAttribute("prodotto", c);
+		Prodotto prodotto = prodottoService.getProdotto(id);
+		model.addAttribute("prodotto", prodotto);
 		return "prodotto.html";
 	}
 	
@@ -75,22 +75,15 @@ public class ProdottoController {
 	
 	@GetMapping("/prodotti") 
 	public String getProdotti(Model model) { 
-		model.addAttribute("categorie", this.categoriaService.getAllCategorie());
-		model.addAttribute("produttori", this.produttoreService.getAllProduttori());
-		model.addAttribute("prodotti", this.prodottoService.getAllProdotti());
-		model.addAttribute("SearchProdotti", new SearchProdotti()); 
+		this.prodottoService.getHomeData(model, this.prodottoService.getAllProdotti());
 		return "prodotti.html";  
 	} 
 
 	
 	@GetMapping("/prodotto/get/filtered") 
 	public String getProdottiFiltered(@ModelAttribute("SearchProdotti") SearchProdotti searchProdotti, Model model) {
-		List<Prodotto> prodotti = this.prodottoService.searchProdotti(searchProdotti);		
+		this.prodottoService.getHomeData(model, this.prodottoService.searchProdotti(searchProdotti));
 		this.credentialsService.setRoleInModel(model);
-		model.addAttribute("categorie", this.categoriaService.getAllCategorie());
-		model.addAttribute("produttori", this.produttoreService.getAllProduttori());
-		model.addAttribute("prodotti", prodotti);
-		model.addAttribute("SearchProdotti", new SearchProdotti()); 
 		return "prodotti.html";     
 	}  
 	
